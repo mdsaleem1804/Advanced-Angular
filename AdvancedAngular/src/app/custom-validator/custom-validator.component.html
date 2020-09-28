@@ -1,0 +1,91 @@
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>Reactive Application Form</h4>
+                </div>
+                <div class="card-body">
+                    <form [formGroup] = "applicationForm" (ngSubmit) = "isApplied=true">
+                        <div class="form-group">
+                            <label>Candidate Id</label>
+                            <input type="text" class="form-control" id="cId" formControlName = "candidateId"  (keyup) = "isApplied=false">
+                            <div *ngIf = "applicationForm.controls.candidateId.invalid && applicationForm.controls.candidateId.dirty">
+                                <h6 *ngIf = "applicationForm.controls.candidateId.errors.required" class="alert alert-danger">Field is required</h6>
+                                <div *ngIf = "applicationForm.controls.candidateId.value">
+                                    <div *ngIf = "applicationForm.controls.candidateId.errors.candidateIdErr">
+                                        <h6 class="alert alert-danger">{{applicationForm.controls.candidateId.errors.candidateIdErr.message}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div>
+                            <button type="submit" class="btn btn-block btn-primary" [disabled] = "applicationForm.invalid">Book</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card" *ngIf = "isApplied">
+                <div class="card-header">
+                    <h4 class="text-center">Application Details</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Candidate Id:</td>
+                                <td>{{applicationForm.controls.candidateId.value}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div><br/>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>Template Driven Registration Form</h4>
+                </div>
+                <div class="card-body">
+                    <form #registrationForm = "ngForm" (ngSubmit) = "isRegistered = true">
+                        <div class="form-group">
+                            <label>Date of birth</label>
+                            <input type="date" appDateOfBirthValidator class="form-control" required [(ngModel)] = "dateOfBirth" #dob = "ngModel" name="dateOfBirth"  (change) = "isRegistered = false">  
+                            <div *ngIf = "dob.invalid && dob.dirty">
+                                <div *ngIf = "dob.errors.ageError">
+                                    <h6 class="alert alert-danger">{{dob.errors.ageError.message}}</h6>
+                                </div>
+                            </div>
+                        </div><br/>
+                        <div>
+                            <button type="submit" class="btn btn-block btn-primary" [disabled] = "registrationForm.invalid">Book</button>
+                        </div>
+                    </form> 
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card" *ngIf = "isRegistered">
+                <div class="card-header">
+                    <h4 class="text-center">Registration Details</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <td>Date of Birth:</td>
+                                <td>{{dateOfBirth}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

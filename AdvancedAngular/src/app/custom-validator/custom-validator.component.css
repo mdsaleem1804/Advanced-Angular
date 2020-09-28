@@ -1,0 +1,16 @@
+.card  {
+    width: 450px;
+    float: none;
+    margin: 0 auto;
+}
+
+.table tbody tr td{
+    border-top: none;
+    border-bottom: 1px solid rgb(218, 217, 217);
+}
+
+
+tbody>tr>:nth-child(1){
+    font-weight: bold;
+    color:#4485da;
+}
