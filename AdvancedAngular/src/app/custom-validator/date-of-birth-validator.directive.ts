@@ -20,7 +20,6 @@ export class DateOfBirthValidatorDirective implements Validator{
     let diffInSeconds = (today.getTime() - dob.getTime())/1000;
     let diffInDays = diffInSeconds/(3600*24);
     let diffInYears = Math.round(diffInDays/365.25);
-    console.log(diffInYears);
     if(diffInYears < 18){
       return { ageError: {message: "Age Should be greater than or equal to 18!"}}
     }
